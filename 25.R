@@ -42,4 +42,22 @@ ggmap(map)
 # data : data on Layer, aes : location coordinate(latitude, longitude)
 # size : character size, default = 5, label : char to print
 
-gmap+goem_text(data=df,aes(x=lon,y=lat), size=3, label=df$name)
+gmap+goem_text(data=df,aes(x=lon,y=lat), size=3,
+               label=df$name, hjust=-.2, vjust=-1)
+
+df1<-read.csv("~/kang.csv", header=TRUE)
+df1
+
+df1$address
+df1$address<-as.character(df1$address) # change to char mode
+
+gc1<-geocode(enc2utf8(df1$address))
+
+cen<-c(mean(df1$longtitude), mean(df1$latitude))
+map<-get_googlemap(center<-cen,maptype='roadmap',zoom=9,marker=gc1)
+
+ggmap(map)+geom_text(data=df1,aes(x=longtitude,y=latitude),
+                    size=3,label=df1$names)
+
+ggmap(map,+extent='device')+geom_point(aes(x=df1$longtitude,y=df1$latitude,
+                    color='red',size=5),data=df1,shape=21)
