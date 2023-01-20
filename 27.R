@@ -7,7 +7,7 @@ kor<-get_map('seoul',zoom=11,maptype='watercolor')
 ggmap(kor)+geom_point(data=u,aes(x=LON,y=LAT,color=factor(schoolname)),size=3)
 
 gmap<-ggmap(kor,fullpage=TRUE)+geom_point(data=u,
-            aes(x=LON,y=LAT,color=factor(schoolname)),size=3)
+                                          aes(x=LON,y=LAT,color=factor(schoolname)),size=3)
 # add Layer2 : add text
 gmap+geom_text(data=u,aes(x=LOn+0.1,y=LAT+0.1,labe=schoolname),size=3)
 
@@ -35,3 +35,24 @@ map2<-ggmap(map1,fullpage=TRUE)
 map2+geom_point(data=df,aes(x=lon,y=lat,color=house,size=house))
 
 ggsave('~/pop.png', scale=1,width=10.24,height7.68)
+
+quakes
+
+df<-head(quakes,100)
+
+cen<-c(mean(df$long),mean(df$lat))
+cen
+
+#ifelse(condition,if condition true,if condition false)
+
+
+df2<-data.frame(lon-df$long,lat-df$lat)
+
+df2$lon<-ifelse(df2$lon>180, -(360-df2$lon),df2$lon)
+df2
+
+map<-get_googlemap(center<-cen,scale=1,maptype='roadmap',zoom=4,marker-df2)
+
+ggmap(map,extent='device')
+
+ggmap(map,fullpage=TRUE)+geom_point(data-df,aes(x=long,y=lat,size=mag),alpha=0.5)
