@@ -1,6 +1,5 @@
-# treemap
 
-install.packages('ggmap')
+# treemap
 
 library(treemap)
 
@@ -68,3 +67,20 @@ bmi<-hwdf$weight/(hwdf$height/100)^2
 bmi
 hwdf$bmi<-bmi
 hwdf
+
+# how to use transform() function
+# transform(dataframe,new variable=equation)
+
+hwdf<-transform(hwdf, bmi2=weight/(height/100)^2)
+
+business<-transform(business,available=factor(!is.na(turnover)),y=1)
+treemap(business, index=c('NACE1','NACE2'),vsize="y",
+        vcolor=avialable,type='categorical')
+
+nlevels(business$NACE1)
+rainbow(21)
+
+business$color<-terrain.colors(nlevels(business$NACE1))[business$NACE1]
+business
+treemap(business, index=c('NACE1', 'NACE2'),vsize="employees",
+        cvolor='color',type='color')
