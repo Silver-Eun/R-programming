@@ -1,6 +1,6 @@
 # treemap
 
-install.packages('treemap')
+install.packages('ggmap')
 
 library(treemap)
 
@@ -41,7 +41,30 @@ treemap(business[business$NACE1=='F - Construction',],
         index=c('NACE2','NACE3'),vsize='employee',type='value')
 
 treemap(business[business$NACE1=='F - Construction',],
-        index=c('NACE2','NACE3'),vcolor='employee',vsize='employees',type='index')
+        index=c('NACE2','NACE3'),vcolor='employee',vsize='employees'
+        ,type='index')
 
 treemap(business[business$NACE1=='F - Construction',],
-        index=c('NACE2','NACE3'),vcolor='turnover',vsize='employees',type='index')
+        index=c('NACE2','NACE3'),vcolor='turnover',vsize='employees'
+        ,type='index')
+
+treemap(business[business$NACE1=='F - Construction',],
+        index=c('NACE2','NACE3'),vcolor='empoyees.prev',vsize='employees'
+        ,type='comp')
+
+treemap(business[business$NACE1=='F - Construction',],
+        index=c('NACE2','NACE3'),vsize='turnover',type='depth')
+
+# fransform
+
+height<-c(175,159,166,189,171,173,179,165,180,170)
+weight<-c(62,55,59,75,61,64,63,65,70,60)
+hwdf<-data.frame(height,weight)
+hwdf
+
+#BMI, (weight/(height/100)^2)
+
+bmi<-hwdf$weight/(hwdf$height/100)^2
+bmi
+hwdf$bmi<-bmi
+hwdf
