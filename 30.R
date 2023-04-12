@@ -71,3 +71,41 @@ rowSums(a) # sum over row
 # tapply
 
 x<-c(rnorm(10),runif(10),rnorm(10,1))
+
+# average 0, normal distribution makes 10 numb standard deviation of 1
+rnorm(10)
+
+# average 1, normal distribution makes 10 numb standard deviation of 1
+rnorm(10,1) 
+
+# function makes equal distribution, numb min 0, max 1
+runif(10)
+
+x
+
+f<-gl(3,10) # create factor level, makes 10 each factor
+
+f
+
+tapply(x, f, mean, simplify=TRUE)
+
+tapply(x, f, mean, simplify=FALSE)
+
+tapply(x, f, range)
+
+head(mtcars)
+
+table(mtcars$cyl)
+
+tapply(mtcars$mpg, mtcars$cyl, mean)
+
+head(iris)
+
+mean(iris[iris$Species=='setosa']$Sepal.Length)
+
+colMeans(iris[iris$Species=='setosa', 1:4])
+
+iris
+
+# find mean sepal length for each iris cultivar
+tapply(iris$Sepal.Length, iris$Species, mean)
