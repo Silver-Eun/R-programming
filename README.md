@@ -1,1 +1,3 @@
-# R programming
+ddazua 온라인 강의 수강
+
+- R프로그래밍을 통한 빅데이터 기초
